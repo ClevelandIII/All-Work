@@ -1,0 +1,25 @@
+.content-container{
+    display: grid;
+    grid-template-columns: repeat(auto, auto, auto, auto, auto, auto, auto, auto);
+    padding: 50px;
+    background-color: lightgray;
+    display: flex;
+    width: 820px;
+    height: 2000px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hole{
+    height: 100px;
+    width: 100px;
+    border: 1px black solid;
+}
+
+.dug{
+    background-color: chocolate;
+}
+
+.undug{
+    background-color: limegreen;
+}
