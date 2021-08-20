@@ -1,0 +1,25 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.tours{
+    max-width: $fixed-width;
+    margin-bottom: 4rem;
+    .title{
+        text-align: center;
+        margin-bottom: 4rem;
+        margin-top: 2rem;
+        .underline{
+            @include box(6rem, 0.25rem);
+            @include center-auto;
+            background: $primary-4;
+        }
+    }
+}
+
+
+
+
+p{
+    font-size: 1rem;
+}
