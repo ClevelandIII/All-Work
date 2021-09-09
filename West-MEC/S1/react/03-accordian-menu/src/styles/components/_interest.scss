@@ -1,0 +1,92 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+h2 {
+  font-size: 1.5rem;
+  color: $grey-0;
+  margin-bottom: 2rem;
+}
+
+.lists {
+  border: 2px solid $grey-9;
+  box-shadow: $light-shadow;
+  border-radius: $radius;
+  margin-top: 1rem;
+}
+
+.visible {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  border: 1px solid $grey-8;
+  background: $grey-8;
+  border-radius: 50%;
+}
+
+h3 {
+  color: $primary-0;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@include large {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: $grey-0;
+    margin-bottom: 2rem;
+    margin-right: .5rem;
+  }
+
+  .lists {
+    border: 2px solid $grey-9;
+    box-shadow: $light-shadow;
+    border-radius: $radius;
+    margin-top: 1rem;
+    width: 650px;
+  }
+
+  .visible {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon {
+    border: 1px solid $grey-8;
+    background: $grey-8;
+    border-radius: 50%;
+  }
+
+  h3 {
+    color: $primary-0;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Loading from "./Pages/Loading";
 import Tours from "./Pages/Tours";
 
-const url = "http://course-api.com/react-tours-project";
+const url = "https://course-api.com/react-tours-project";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [tours, setTours] = useState([]);
   const [error, setError] = useState(false);
-
+ 
   const fetchTours = async () => {
     try {
       const response = await fetch(url);
@@ -25,6 +25,7 @@ function App() {
   // fetchTours()
 
   useEffect(() => {
+    setLoading(true)
     fetchTours();
   }, []);
 
@@ -46,6 +47,18 @@ function App() {
         <h1>There was an error</h1>
       </main>
     );
+  }
+  if(tours.length === 0){
+    return(
+      <main>
+        <div className="title">
+          <h2>No Tours Left</h2>
+          <div className="underline">
+            <button className="button" onClick={() => fetchTours()}>Refresh</button>
+          </div>
+        </div>
+      </main>
+    )
   }
   return (
     <main>

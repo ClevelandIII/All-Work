@@ -1,12 +1,12 @@
 import React from "react";
 
 const Lists = ({ people, removePerson }) => {
-  return people.map((person) => {
+  return people.map((person) => { 
     const { id, name, age, image } = person;
-    return (
+    return ( 
       <article key={id} className="lists">
         <img src={image} alt={name} />
-        <div>
+        <div> 
           <h4>{name}</h4>
           <p>{age}</p>
         </div>

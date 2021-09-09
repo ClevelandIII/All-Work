@@ -13,7 +13,7 @@ const Tours = ({ tours, removeTour }) => {
           return <Tour key={tour.id} {...tour} removeTour={removeTour}/>;
         })}
       </div>
-    </section>
+    </section> 
   );
 };
 
