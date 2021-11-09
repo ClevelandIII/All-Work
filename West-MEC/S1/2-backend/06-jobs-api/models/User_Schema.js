@@ -16,6 +16,8 @@ const UserSchema = new mongoose.Schema({
   Password: {
       type: String,
       required: [true, "Must enter a password"],
-      match: /^.{6,50}$/,
+      match: /^.{6,}$/,
   }
 });
+
+module.exports = mongoose.model('User', UserSchema)
