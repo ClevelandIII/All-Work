@@ -1,27 +1,29 @@
 const mongoose = require("mongoose");
-const { stringify } = require("querystring");
 
-const productSchema = new mongoose.Schema({
-  Company: {
-    type: String,
-    required: [true, "Must enter a company name"],
-    match: /^.{0,50}$/,
-  },
-  Position: {
-    type: String,
-    required: [true, "Must enter a posision"],
-    match: /^.{0,100}$/,
-  },
-  Status: {
-    type: String,
-    default: "pending",
-    enum: {
-      values: ["interview", "declined", "pending"],
+const JobSchema = new mongoose.Schema(
+  {
+    company: { 
+      type: String,
+      required: [true, "Must enter a company name"],
+      maxlength: 50,
+    },
+    position: {
+      type: String,
+      required: [true, "Must enter a posision"],
+      maxlength: 100,
+    },
+    status: {
+      type: String,
+      default: "pending",
+      enum: ["interview", "declined", "pending"]
+    },
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provide user"],
     },
   },
-  CreatedBy : {
+  { timestamps: true }
+);
 
-  }
-});
-
-module.exports = mongoose.model('Job', productSchema)
+module.exports = mongoose.model("Job", JobSchema);

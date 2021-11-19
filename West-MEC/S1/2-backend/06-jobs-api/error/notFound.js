@@ -1,11 +1,11 @@
-const { statusCode } = require("http-status-codes");
-const { CustomError } = require("./custom-api-error");
+const CustomApiError = require("./custom-error");
+const { StatusCodes } = require("http-status-codes");
 
-class notFound extends CustomError {
+class NotFoundError extends CustomApiError {
   constructor(message) {
     super(message);
-    this.statusCode = statusCode.Not_Found;
+    this.statusCode = StatusCodes.NOT_FOUND;
   }
 }
 
-module.exports = notFound;
+module.exports = NotFoundError;
