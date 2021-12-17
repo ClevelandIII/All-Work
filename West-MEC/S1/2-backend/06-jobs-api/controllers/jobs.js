@@ -15,7 +15,7 @@ const getAllJobs = async (req, res) => {
   res.status(StatusCodes.OK).json({ jobs, length: jobs.length });
 };
 const getJob = async (req, res) => {
-  const { userID } = req.user.userID;
+  const { userID } = req.user;
   const { id: jobID } = req.params;
 
   const job = await Job.findOne({ createdBy: userID, _id: jobID });
