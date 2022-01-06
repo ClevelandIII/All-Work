@@ -1,0 +1,53 @@
+Keywords
+
+Public
+
+- The public keyword allows variables to be used inside of several classes and files without ann issue in ts. 
+- This is important due to modules since they are run when the file is required.
+- This is the default value of a variable.
+
+Private
+
+- Private makes the variables unchangeable outside of a class.
+- Most of the time this is used ot protect important information that you dont want to be overwritten.
+- Use getters and setters to access variables.
+
+Protected
+
+- Private values are not available to classes that extend the original class.
+- Protected values are availible to extended classes, everything else is the same as private
+
+ReadOnly
+
+- As the name implies this throws an error if you try to change the value of a variable.
+- You can use this in classes since you cant use consts
+
+Static 
+
+- Static makes values and methods available without needed to initialixe the class first.
+- We have alreadry been using this, a good example is Math.PI or Math.min(), we dont need to make let math = new Math()
+
+Classes
+
+- Fancy objects
+
+Abstract
+
+- Abstract makes classes, methods, or variables only accessible to extended classes
+- If you extend something you must include super()
+
+Getters and setters
+
+- These are very comon methods in classes that allow you change values in the class that are otherwise protected.
+- Normally there is some kind of validation that you are allowed to change that value but it doesnt need to have that.
+- To create then use the get/set keywords
+- If there are parameters, then it is a set. Otherwize it is a get. This is how they are allowed to use the same name
+
+Interface
+
+- AN interface is a description of an object, including values and methods. 
+- They are very similar to types but work better with classes in particular.
+- Interfaces are always capitalized
+- THis is a great way to ve sure that an object is guaranteed to have a method or and what that method is going to return.
+- This avoids errors in large projects where an object may be user over several files, ensuring that they have the required values and methods.
+- Interfaces were created to help with classes not so much with functions

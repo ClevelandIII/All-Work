@@ -1,0 +1,181 @@
+Typescript 101
+
+- TS is just JS with more features
+- Many modern libraries are written in TS so they are able to use cutting edge code
+- TS was created for large projects, to help with errors/ unclear code between developers that cant always communicate
+
+Typescript 102
+
+- TS cant be run in the browser or any JS enviroment.
+- Because of this we run TS through a compiler that conberts and runs TS as JS so we get all the advantages on any JS engine we want.
+- npm i -g typescript to install, npx tsc [file] to compile
+
+Benifits of TS
+
+- Sharable code
+ - When someone uses your code they are able to see what data types are expected on the inputs and outputs
+- Smarter code
+ - Since TS compiles into ES5 or ES6 your are able to use any methods or ts libraries that you want and it will always work
+- Shorter code
+ - Since you sometimes complike down to an older version of js, there is a lot fo code that you dont have to write and is done for you.
+- Safe code
+ - Since you define everything as you go, the compiler will throw errors WHILE you code, reducing errors in run-time
+
+Watch mode
+
+- There is a built in watch mode, similar to nodemon that will compile every time a change is made and saved.
+ - tsc app.ts -w //watches app.ts
+ - tsc -w //watches files in dir
+
+Initialize to TS
+
+- Just kidding, watch mode doesnt work without a config file.
+- To configure your ts compiler then you need to create the config file using npx tsc -init
+
+Config Options
+
+- target: ES2016
+
+- This states the target level of JS that you want the ts to compile down to.
+- ES6 is what you likely wan to be using but if you want to be EXTRA sure then you can use ES5
+- The lib option jas a bunch of different libraries pre-installed that you can add but there is no reason for us to mess with this option righ now.
+- In the future you will likely be adding new libraries to this option
+- Source map creates a file that allows you to debug
+- Ourdir specifies where the file should go when its done
+- rootDir. This tells the compiler where to look when finding files to compile.
+- noEmitOnError. The JS will not be created if there are any errors in the code.
+- strict. This makes sure you are typing clear and consice code and shows errors otherwize. Essencially use strict
+
+Lastly
+
+- When crearing a program using TS you do not want ot push the ts files and the js files since they are essentially the same thing. You should always have *.js in your gitignore from now on
+
+Part 2
+
+CastType
+
+- ex: let jimmy: string
+
+Let and const
+
+- ES6 let and const
+- ES5 var
+
+Arrow function 
+
+- arrow functions
+- keyword function
+
+Default function params
+
+- you can define a default value or it will auto define
+- you define it if the value was not defined
+
+Spread operatior
+
+- adding ...
+- added to temp var once at a time
+
+Rest operatior
+
+- adding ... with params
+- function are created with an argument value that you can loop through
+
+Destructuring
+
+- multiple variables can be defined at once using destructuring for arrays or objects.
+- each need to be defined by hand
+
+One last thing
+
+- Sometimes there will be errors when importing libs or using the dom. 
+- You can ignore errors like this by using the !.
+- This should only be used when you know that the error is covered and proper
+
+TS Types
+
+- TS is microsoft's attemp to push JS in a more object oriented direction.
+- One big step to doing that is adding types to the variables and objects.
+- You can add a type to any variable by placing colons, :, after it.
+
+Basic types
+
+- num, string , boolean, object, array, enum (defines allowed values in a variable), tuple (defines what is allowed)
+
+Types - functions
+
+- The parameters in a function should be given to avoid errors while developing
+- It is also a good idea to add a type for the output of a function
+- Void is a common phrase meaning nothin is being returned
+
+Types - objects and arrays
+
+- Just like modeling with mongoose, we are able to model objects using type casting.
+- const Huuuman = (
+  name: string,
+  age: number,
+  hobby: string[]
+)
+- Objects can be typecast inside of another type casted object
+
+Types - enum
+
+- To create an enumerated list enum use the keyword enum followed by an object of human readable values and the behind the scenes values they represent.
+
+- The largest advantage for enum is the consistency.
+- If we create a role enum, then everywhere we use that role in the future is guaranteed to have the same value, 0 or "admin"
+- the other advantage is storage space
+- Always capitalized
+- enum MadeBy {
+  "IKEA",
+  "COSCO",
+  "AMAZON",
+}
+
+const product: {
+  name: string;
+  price: number;
+  tags: string[];
+  manufacture: MadeBy;
+} = {
+  name: "Chair",
+  price: 40,
+  tags: ["sale", "antique"],
+  manufacture: MadeBy.AMAZON or 2
+};
+
+- Also, manufacture madeby amazon could be replaced with its place in the list, which would in this case be only the number 2
+
+Types - unions
+
+- Variables can accept more tha n one type for instatnce a function may take a number or a string. 
+- That can be defined with a vertical line
+- let result : string | number
+
+Types - aliases
+
+- If a union type is going to be used often then it is more useful to create a custom type callled an alias by using the type keyword
+- type Combinable = number | string
+- Remember: custom classes are capital
+
+- type User = {name: string; age: number}
+
+function greet (user: User){
+    console.log('Hi, I am " + user.name)
+}
+
+function isOlder (user: User, checkAge: number) {
+    return checkAge > user.age
+}
+
+Types - function types
+
+- Ts is also able to store entire fucntions as aliases.
+- let add : (a: number, b: number) => {}
+- The arrow is used to define the type of value
+
+Type - unknown
+
+- There is a unique type named unknown that works similar to any but is more restricive.
+- any can be assighned to any type any -- string
+- unknown errors unknown != string

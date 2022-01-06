@@ -1,0 +1,7 @@
+    //important this is how you do user authentification
+    const { data } = await axios.get('/api/v1/dashboard', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    //important
