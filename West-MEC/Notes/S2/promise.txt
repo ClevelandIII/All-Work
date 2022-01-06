@@ -1,0 +1,9 @@
+async function =>
+    I will return something with this. (This is the promise)
+    return => 
+        if succedded return resolved
+        else return rejected
+
+you use .then to do the next step once resolved
+then returns the resolve function
+catch returns the rejected function

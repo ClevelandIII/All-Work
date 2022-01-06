@@ -51,3 +51,25 @@ Interface
 - THis is a great way to ve sure that an object is guaranteed to have a method or and what that method is going to return.
 - This avoids errors in large projects where an object may be user over several files, ensuring that they have the required values and methods.
 - Interfaces were created to help with classes not so much with functions
+
+Intersection types
+
+- Intersection types can take 2 types or interfaces and combine them into 1 type
+- This is useful fo some more advanced functions
+
+Type Guards
+
+- Type Guards are when you yse a conditional to choose only 1 type and make sure the input will be that type
+- if (typeof input1 === "number"){
+    result = input1 + input2;
+}
+
+Type casting
+
+- Type Casting is a useful tool where we specifically say what the type is without any assumptions or implications
+- You can do this in 2 different ways using eaither <args> or the as keyword
+
+Generics
+
+- A generic is a placeholder type that is used as a catch all for types you dont know yet.
+- The most common use for these are objects with unknown fields or variables fields.
