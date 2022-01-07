@@ -73,3 +73,5 @@ Generics
 
 - A generic is a placeholder type that is used as a catch all for types you dont know yet.
 - The most common use for these are objects with unknown fields or variables fields.
+- Typically we reserve these with letters starting with T and then moving through the alphabet.
+- These also dont play well with arrow functions so it is better to use funciton declarations instead

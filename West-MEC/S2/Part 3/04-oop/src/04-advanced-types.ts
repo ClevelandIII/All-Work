@@ -21,3 +21,13 @@ const promise: Promise<string> = new Promise((resolve: any, reject: any) => {
 
 promise.then((data) => console.log(data.split(" "))); //Done
 promise.catch((data) => console.log(data)); //FAILED
+
+//* Generics
+
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+
+const mergedObjs = merge({ name: "Jimmy" }, { age: 30 });
+console.log(mergedObjs); //name Jimmy, age 30
+console.log(mergedObjs.name);
