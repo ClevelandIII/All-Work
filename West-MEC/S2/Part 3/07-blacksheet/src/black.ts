@@ -1,7 +1,4 @@
 abstract class Monster {
-  names: string[] = [];
-  stats: string[] = []
-
   constructor(
     public identity: string,
     public location: string,
@@ -11,18 +8,22 @@ abstract class Monster {
     public size: string,
     public id: string
   ) {
-    this.location = location;
     this.identity = identity;
     this.challengeRating = challengeRating;
+    this.location = location;
     this.weakness = weakness;
     this.color = color;
     this.size = size;
     this.id = id;
+
+    this.init();
+  }
+
+  init() {
+    MonsterStorage.monsterObject.push(this);
   }
 
   abstract identify(): void;
-
-  abstract database(): void
 }
 
 enum Signs {
@@ -42,15 +43,11 @@ class Ghost extends Monster {
     public type: string,
     public signs: Signs
   ) {
-    super("Ghost", location, challengeRating, "Sean", "transparent", size, id);
+    super(identity, location, challengeRating, weakness, color, size, id);
   }
 
   identify(): void {
     console.log(`this monster is a ${this.type}`);
-  }
-
-  database(name: string, stats: string[]): void {
-      this.names.push()
   }
 
   updateMonster(type: string) {
@@ -75,7 +72,7 @@ class Beasts extends Monster {
     public habitat: string,
     public defensives: string[]
   ) {
-    super("Beast", location, challengeRating, "Bad Memories", color, size, id);
+    super(identity, location, challengeRating, weakness, color, size, id);
   }
 
   identify(): void {
@@ -116,7 +113,7 @@ class Humanoid extends Monster {
     public humanness: number,
     public complience: complience
   ) {
-    super("Human-like", location, challengeRating, "Chaos", color, size, id);
+    super(identity, location, challengeRating, weakness, color, size, id);
   }
 
   identify(): void {
@@ -136,44 +133,51 @@ class Humanoid extends Monster {
   }
 }
 
-// const newGhost = new Ghost(
-//   "Casper",
-//   "18005882300 Empire",
-//   10,
-//   "Sean",
-//   "transparent",
-//   "medium",
-//   "1",
-//   "unknown",
-//   Signs.WRITING
-// );
+//push all stats to this, map by name
+class MonsterStorage {
+  static monsterObject: Monster[] = [];
+}
+
+const newGhost = new Ghost(
+  "Casper",
+  "18005882300 Empire",
+  10,
+  "Sean",
+  "transparent",
+  "medium",
+  "1",
+  "unknown",
+  Signs.WRITING
+);
 // newGhost.updateMonster("phantom");
 // newGhost.printInfo();
 
-// const newBeast = new Beasts(
-//   "Amalgamate",
-//   "18005882300 Empire",
-//   7,
-//   "Bad Memories",
-//   "white",
-//   "small",
-//   "2",
-//   "blob",
-//   "underground",
-//   ["faces", "bad memories", "toby fox"]
-// );
+const newBeast = new Beasts(
+  "Amalgamate",
+  "18005882300 Empire",
+  7,
+  "Bad Memories",
+  "white",
+  "small",
+  "2",
+  "blob",
+  "underground",
+  ["faces", "bad memories", "toby fox"]
+);
 // newBeast.printInfo();
 
-// const newHuman = new Humanoid(
-//   "Jevil",
-//   "18005882300 Empire",
-//   10,
-//   "Chaos",
-//   "blue and black",
-//   "medium",
-//   "J",
-//   "Darkener",
-//   7,
-//   complience.neutral
-// );
+const newHuman = new Humanoid(
+  "Jevil",
+  "18005882300 Empire",
+  10,
+  "Chaos",
+  "blue and black",
+  "medium",
+  "J",
+  "Darkener",
+  7,
+  complience.neutral
+);
 // newHuman.printInfo();
+
+console.log(MonsterStorage.monsterObject.sort());
