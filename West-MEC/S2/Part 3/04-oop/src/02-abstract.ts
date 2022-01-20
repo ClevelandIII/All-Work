@@ -15,6 +15,7 @@ abstract class Department {
   }
 
   printEmployeeInfo() {
+    console.log(this.name);
     console.log(this.id);
     console.log(this.employees.length + " employees");
     console.log(...this.employees);
@@ -40,6 +41,11 @@ class ITDepartment extends Department {
   removeAdmin(name: string) {
     this.admins = this.admins.filter((admin) => admin != name);
   }
+  printEmployeeInfo1() {
+    console.log(" ");
+    console.log(this.id);
+    console.log(this.admins);
+  }
 }
 
 const IT = new ITDepartment("D2", ["Jimmy"]);
@@ -47,11 +53,12 @@ IT.addEmployee("Jimmy");
 IT.addEmployee("Jammy");
 
 IT.printEmployeeInfo();
+IT.printEmployeeInfo1();
 
 const IT2 = new ITDepartment("D3", ["Tammy"]);
 IT2.addEmployee("Tammy");
 
-IT2.printEmployeeInfo();
+// IT2.printEmployeeInfo();
 
 class Acounting extends Department {
   constructor(id: string, public profits: number[]) {
@@ -72,7 +79,7 @@ class Acounting extends Department {
   }
 
   removeLastProfit() {
-    this.profits.splice(-1, 1)
+    this.profits.splice(-1, 1);
     return this.profits;
   }
 }

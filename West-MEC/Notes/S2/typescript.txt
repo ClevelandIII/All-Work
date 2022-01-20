@@ -118,6 +118,13 @@ Types - objects and arrays
 )
 - Objects can be typecast inside of another type casted object
 
+constructor
+
+- A constructor is essentially the params of the class functions. 
+- When you make a class and add a constructer, those params in the constructor act as the class's params
+- if i make a new class of the class and then add in the params, the params are the same as the ones in the constructor.
+-
+
 Types - enum
 
 - To create an enumerated list enum use the keyword enum followed by an object of human readable values and the behind the scenes values they represent.
