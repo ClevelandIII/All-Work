@@ -131,15 +131,13 @@ class MonsterStorage {
   static monsterObject: Monster[] = [];
 
   static alphabeticalSort() {
-    return MonsterStorage.monsterObject.sort((a: Monster, b: Monster) => {
+    MonsterStorage.monsterObject.sort((a: Monster, b: Monster) => {
       const bruh = a.identity.localeCompare(b.identity);
-      console.log(bruh);
-
-      return 0;
+      return bruh;
     });
   }
 
-  static alphabeticalGrab(type: string) {
+  alphabeticalGrab(type: string) {
     // for (let i = 0; i > MonsterStorage.monsterObject.length; i++){
     //   if(type == a.identity){
     //     return a.identity
@@ -256,7 +254,7 @@ const newHuman3 = new Humanoid(
 
 const newHuman4 = new Humanoid(
   "unknown",
-  `40°42'02.7"N 75°52'00.2"W`,
+  "40°42’02.7”N 75°52’00.2”W",
   10,
   "unknown",
   "Pink and Red",
@@ -266,6 +264,17 @@ const newHuman4 = new Humanoid(
   Complience.hostile
 );
 
-console.log(MonsterStorage.alphabeticalSort())
-console.log(MonsterStorage.alphabeticalGrab('Jevil'))
+console.log(MonsterStorage.alphabeticalSort());
+console.log(
+  MonsterStorage.monsterObject.sort((a: Monster, b: Monster) => {
+    return a.identity.localeCompare(b.identity);
+  })
+);
+console.log(
+  MonsterStorage.monsterObject.sort((a: Monster, b: Monster) => {
+    const comp = a.identity.localeCompare(b.identity);
+    console.log(comp);
 
+    return 0;
+  })
+);
