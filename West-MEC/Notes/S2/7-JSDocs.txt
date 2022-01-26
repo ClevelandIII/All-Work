@@ -1,0 +1,7 @@
+jsdocs
+
+- This is a tool that allows devs to comment thier code for other devs.
+- We are abou to add params, descriptions, types, and exapmles to help future devs use our code later
+- npm i -D jsdoc
+//-D for dev, wont compile for client
+

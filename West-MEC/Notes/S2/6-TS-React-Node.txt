@@ -1,0 +1,27 @@
+Adding JS Libraries
+
+- IF you want to install a library that is exclusivelt created for js (like lodash) then ts wont be able to import an duse it like a js file would
+
+@types
+- Microsoft made a giant @types library that essentially fills in the typecasting for every file in th emodule
+- npm i --save-dev @types/lodash
+- This will fix lodash compilation errors
+
+React
+//yaaaaa react :(
+
+- THere are a few hang-ups involved with typescript components.
+- When you use a component, the type needs to be declared and that includes the object of props that you are going to use.
+- One huge difference that will take time to adjust to is dealing with props.
+- In the past we were able to destructure the props that were passed down to the component.
+- Now we need ot assept the props and define the structure that it olooks like.
+- Almost all react feature that we have used are compatible with TS.
+- The ones that arent have an @types library to fill n the gaps, such as react-router-dom
+//React.fc = react function component type
+
+Node
+
+- Node does not execute TS.
+- We are going to compile it using tsc watch into a dist folder and then run nodemon on the js file
+- Everything else is basically the same with node except with type casting.
+- An @types/express is availible that will help with type casting all of the typical methods ( like req, res, next)

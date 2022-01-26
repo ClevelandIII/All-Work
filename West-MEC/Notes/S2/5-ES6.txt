@@ -1,0 +1,47 @@
+Namespaces
+
+-You can create name spaces and export them to other files similarly to export/ import modules
+- Anythin in a namespace is only availible in the namespace
+- namespace DDInerface{
+    export interface Draggable {
+        dragStartHandler (event: Dragevent): void
+        dragEndHandler (event: Dragevent): void
+    }
+}
+- Once a namesace is exported it then needs to be added as a reference to file that needs to use it
+- /// <reference path='dd-interfaces.ts' />
+- the /// is intentional an required and is not a comment
+- You need to place everythin in the project in a namespace with the same name or they wont speak to each other.
+- lastly, you need to go to your config file and create an outfile so that they are all compiled into 1 large file
+
+ES6 modules
+
+- We have used these vefore for node and express, you are able to export and import the files using modules.
+- import {dragtarget, draggable} from './dd-interfaces.js'
+- this is a simple solution to name spaces but this wont work on older browsers, keep that in mind
+- just an important note, when using the modules you need to add .js to the end off the file names.
+- Ts is smart enough to notice what you mean and when they are compiled to js it will still work fine
+
+Webpack
+
+- The last way is to use webpack to bundle our files together and make them easier for the user to request and load.
+- If we look at the network for the refactor we cna see taht every file needs to be requrested and loaded which isnt a huge deal but can add up in larger projects
+- Webpack minifies the code and bundles it into the smallest form it can.
+- If is also configurable, you are able to add all kinds of useful tools and modifications to the bundle.
+
+Webpack Setup
+
+- npm i --save-dev
+//save dev means only availible on the developer side
+- webpack - basic webpack dependencies
+- webpack-cli - lets us use webpack terminal commands
+- typescript
+- ts-loader
+
+Config Tweaks for Webpack
+
+- make sure target is ES6
+- make sure module is es2015
+- comment out root dir, since webpack finds the root
+- turn on source maps, so you can read minified js
+
