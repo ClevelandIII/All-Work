@@ -35,11 +35,10 @@ Initialize to TS
 Config Options
 
 - target: ES2016
-
-- This states the target level of JS that you want the ts to compile down to.
+ - This states the target level of JS that you want the ts to compile down to.
 - ES6 is what you likely wan to be using but if you want to be EXTRA sure then you can use ES5
 - The lib option jas a bunch of different libraries pre-installed that you can add but there is no reason for us to mess with this option righ now.
-- In the future you will likely be adding new libraries to this option
+ - In the future you will likely be adding new libraries to this option
 - Source map creates a file that allows you to debug
 - Ourdir specifies where the file should go when its done
 - rootDir. This tells the compiler where to look when finding files to compile.

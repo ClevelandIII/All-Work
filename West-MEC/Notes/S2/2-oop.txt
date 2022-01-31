@@ -108,7 +108,7 @@ Decorator Factories
 Decorator Templates
 
 - Templates are typically used to create an output in the HTML using a defined class
-- These are also able to instatialte classes on their own to return a value
+- These are also able to instanciate classes on their own to return a value
 
 
 
