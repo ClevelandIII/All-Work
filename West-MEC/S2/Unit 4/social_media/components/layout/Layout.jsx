@@ -14,7 +14,7 @@ const layout = ({ children }) => {
     <>
       <HeadTags />
       <Navbar />
-      <Container>{children}</Container>
+      <Container text>{children}</Container>
     </>
   );
 };

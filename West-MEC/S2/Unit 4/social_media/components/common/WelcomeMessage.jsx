@@ -31,7 +31,7 @@ export const FooterMessage = () => {
         </>
       ) : (
         <>
-          <Message attached="bottom" color="olive">
+          <Message attached="top" color="olive">
             <Icon name="help" />
             New User? <Link href="/signup">Signup Here</Link> instead
           </Message>

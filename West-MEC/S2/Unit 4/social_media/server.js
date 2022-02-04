@@ -1,6 +1,6 @@
 //! Express App Setup
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 // const app = require("express")() faster method
 
 //! Next App Setup
@@ -13,6 +13,9 @@ const nextApp = next({ dev });
 //import request handlers for the server
 const handler = nextApp.getRequestHandler();
 
+//Routes
+const signupRoute = require("./pages/api/v1/signup");
+
 //! Express Middlewares
 const { connectDB } = require("./DB/connect");
 const PORT = process.env.PORT || 3000;
@@ -22,9 +25,12 @@ app.use(express.json());
 connectDB();
 
 nextApp.prepare().then(() => {
-    app.all('*', (req, res) => handler(req, res))
-    app.listen(PORT, (err) => {
-        if(err) console.log(err);
-        else console.log(`Server listening at ${PORT}`);
-    })
-})
+  //Routing
+  app.use("/api/v1/signup/:username", signupRoute);
+
+  app.all("*", (req, res) => handler(req, res));
+  app.listen(PORT, (err) => {
+    if (err) console.log(err);
+    else console.log(`Server listening at ${PORT}`);
+  });
+});
