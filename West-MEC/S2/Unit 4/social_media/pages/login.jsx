@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Button, Divider, Form, Message, Segment } from "semantic-ui-react";
 import {
   FooterMessage,
   HeaderMessage,
-} from "../components/common/WelcomeMessage";
+} from "./components/common/WelcomeMessage";
+import { setToken } from "./util/authUser";
+import catchErrors from "./util/catchErrors";
 
 const login = () => {
   const [user, setUser] = useState({
@@ -24,9 +27,17 @@ const login = () => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg("You should fix this issue... NOW!!!");
+    setFormLoading(true);
+    try {
+      const res = await axios.post("/api/v1/user/login", { user });
+      setToken(res.data)
+    } catch (error) {
+      const errorMsg = catchErrors(error)
+      setErrorMsg(errorMsg);
+    }
+    setFormLoading(false);
   };
   //*Effects
   useEffect(() => {

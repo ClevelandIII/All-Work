@@ -2,13 +2,15 @@ import React from "react";
 import {
   FooterMessage,
   HeaderMessage,
-} from "../components/common/WelcomeMessage";
+} from "./components/common/WelcomeMessage";
 import { useState, useEffect, useRef } from "react";
-import { Button, Form, Segment, TextArea } from "semantic-ui-react";
-import regexUserName  from "../utils/valUsername";
-import CommonSocials from "../components/common/CommonSocials";
-import ImageDropDiv from "../components/common/ImageDropDiv";
+import { Button, Form, Message, Segment, TextArea } from "semantic-ui-react";
+import CommonSocials from "./components/common/CommonSocials";
+import ImageDropDiv from "./components/common/ImageDropDiv";
 import axios from "axios";
+import { setToken } from "./util/authUser";
+import catchErrors from './util/catchErrors'
+let cancel;
 
 const signup = () => {
   const [user, setUser] = useState({
@@ -53,23 +55,72 @@ const signup = () => {
 
   //Form Handlers
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+
+    if (name === "media" && files.length) {
+      setMedia(() => files[0]);
+      setMediaPreview(() => URL.createObjectURL(files[0]));
+    } else {
+      setUser((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setFormLoading(true);
+
+    let profilePicURL;
+
+    if (media !== null) {
+      const formData = new FormData();
+      formData.append("image", media, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      const res = await axios.post("/api/v1/uploads", formData);
+      profilePicURL = res.data.src;
+    }
+
+    if (media !== null && !profilePicURL) {
+      setFormLoading(false);
+      return setErrporMsg("Error Uploading Image");
+    }
+
+    try {
+      const res = await axios.post("/api/v1/user/signup", {
+        user,
+        profilePicURL,
+      });
+      setToken(res.data)
+    } catch (error) {
+      console.log(error);
+      const errorMsg = catchErrors(error);
+      setErrorMsg(errorMsg);
+    }
+
+    setFormLoading(false);
+
   };
 
   const handleUsernameAvail = async () => {
+    const cancelToken = axios.CancelToken;
     setUserNameLoading(true);
     try {
-      const res = await axios.get(`/api/v1/signup/${username}`);
+      cancel && cancel();
+      const res = await axios.get(`/api/v1/user/${username}`, {
+        cancelToken: new axios.CancelToken((canceler) => {
+          cancel = canceler;
+        }),
+      });
       if (res.data === "Availible") {
         setUsernameAvail(true);
+        setErrorMsg(null);
         setUser((prev) => ({ ...prev, username }));
       }
     } catch (err) {
+      setUsernameAvail(false);
       setErrorMsg("Username isnt availible");
     }
 
@@ -95,6 +146,12 @@ const signup = () => {
             media={media}
             setMedia={setMedia}
           />
+          <Message
+            error
+            content={errorMsg}
+            header="Whoops"
+            icon="meh"
+          />
           <Form.Input
             label="Name"
             placeholder="Name"
@@ -117,12 +174,6 @@ const signup = () => {
             required
             onChange={(e) => {
               setUsername(e.target.value);
-              const test = regexUserName.test(e.target.value);
-              if (test || regexUserName.test(e.target.value)) {
-                setUsernameAvail(true);
-              } else {
-                setUsernameAvail(false);
-              }
             }}
           />
           <Form.Input

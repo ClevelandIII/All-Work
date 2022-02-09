@@ -23,6 +23,10 @@ const ImageDropDiv = ({
             ref={inputRef}
           />
           <div
+            onClick={() => {
+              inputRef.current.click();
+            }}
+            style={{ cursor: "pointer" }}
             onDragOver={(e) => {
               e.preventDefault();
               setHighlighted(true);
@@ -44,11 +48,8 @@ const ImageDropDiv = ({
               <Segment
                 placeholder
                 basic
-                onClick={() => {
-                  inputRef.current.click();
-                }}
                 style={{ cursor: "pointer" }}
-                {...(highlighted && {color: "green"})}
+                {...(highlighted && { color: "green" })}
               >
                 <Header icon>
                   <Icon name="file image outline" />
@@ -56,7 +57,7 @@ const ImageDropDiv = ({
                 </Header>
               </Segment>
             ) : (
-              <Segment placeholder basic color="olive">
+              <Segment placeholder basic >
                 <Image
                   src={mediaPreview}
                   size="medium"
