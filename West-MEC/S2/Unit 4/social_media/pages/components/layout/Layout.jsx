@@ -1,20 +1,57 @@
 import HeadTags from "./HeadTags";
 import Navbar from "./Navbar";
-import { Container } from "semantic-ui-react";
+import { createRef } from "react";
+import { Container, Grid, Ref, Segment, Sticky, Visibility } from "semantic-ui-react";
+import Search from "./SearchComponent";
+import SideMenu from "./SideMenu";
 
 //! This is for the nprogress bar
 import nprogress from "nprogress";
 import Router from "next/router";
 
-const layout = ({ children }) => {
+const layout = ({ children, user }) => {
   Router.onRouteChangeStart = () => nprogress.start();
   Router.onRouteChangeComplete = () => nprogress.done();
   Router.onRouteChangeError = () => nprogress.done();
+
+  //createref will update the reference on rerender
+  //useref will only update on refresh
+  const contextRef = createRef()
+
   return (
     <>
       <HeadTags />
-      <Navbar />
-      <Container text>{children}</Container>
+      {user ? (
+        <>
+        <div style={{marginLeft:'1rem', marginRight:'1rem'}}>
+          <Ref innerRef = {contextRef}>
+            <Grid>
+              <Grid.Column floated="left" width={3}>
+                <Sticky context={contextRef}>
+                  <SideMenu user={user}/>
+                </Sticky>
+              </Grid.Column>
+              <Grid.Column width={10}>
+                <Visibility context={contextRef}>
+                  {children}
+                </Visibility>
+              </Grid.Column>
+              <Grid.Column floated="right" width={3}>
+                <Sticky context={contextRef}>
+                  <Segment basic>
+                    <Search/>
+                  </Segment>
+                </Sticky>
+              </Grid.Column>
+            </Grid>
+          </Ref>
+          </div></>
+      ) : (
+        <>
+          <Navbar />
+          <Container text>{children}</Container>
+        </>
+      )}
     </>
   );
 };

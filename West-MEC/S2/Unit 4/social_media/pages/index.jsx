@@ -1,8 +1,13 @@
 import { Divider } from "semantic-ui-react";
 import { checkToken } from "./util/authUser";
+import { useEffect } from "react";
 
 const index = ({ user, followData }) => {
-  console.log(user, followData);
+
+  useEffect(() => {
+    document.title = `Welcome, ${user.name.split(" ")[0]}`
+  },[])
+
   return <div>Home Page</div>;
 };
 

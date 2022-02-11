@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { Button, Divider, Form, Message, Segment } from "semantic-ui-react";
 import {
@@ -43,6 +44,13 @@ const login = () => {
   useEffect(() => {
     setSubmitDisabled(!(email && password));
   }, [user]);
+
+  useEffect(() => {
+    document.title = `Welcome Back`
+    const userEmail = Cookies.get('userEmail')
+    if(userEmail) setUser((prev) => ({...prev, email: userEmail}))
+  }, [])
+  
 
   return (
     <>

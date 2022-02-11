@@ -28,6 +28,7 @@ const handler = nextApp.getRequestHandler();
 const userRoute = require("./server/routes/userRoutes");
 const authRoute = require("./server/routes/authRoutes");
 const uploadRoute = require("./server/routes/uploadPicRoutes");
+const searchRoute = require("./server/routes/searchRoutes");
 
 //! Express Middlewares
 app.use(express.json());
@@ -37,6 +38,8 @@ app.use(fileUpload({ useTempFiles: true }));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/uploads", uploadRoute);
+app.use("/api/v1/search", searchRoute);
+// app.use('/api/v1/search', require('./server/routes/searchRoutes'))/ cleaner
 
 //! App Startup
 connectDB();
