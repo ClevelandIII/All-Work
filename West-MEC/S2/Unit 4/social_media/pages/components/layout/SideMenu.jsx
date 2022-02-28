@@ -39,7 +39,7 @@ const SideMenu = ({
               size="large"
               color={
                 (isActive("/messages") && "orange") ||
-                (unreadMessage && "gray") ||
+                (unreadMessage && "grey") ||
                 undefined
               }
             />
@@ -58,7 +58,7 @@ const SideMenu = ({
               size="large"
               color={
                 (isActive("/notifications") && "orange") ||
-                (unreadNotification && "gray") ||
+                (unreadNotification && "grey") ||
                 undefined
               }
             />
@@ -76,7 +76,7 @@ const SideMenu = ({
               name="user"
               size="large"
               color={
-                (router.query.username === username && "gray") || undefined
+                (router.query.username === username && "grey") || undefined
               }
             />
             <List.Content>
@@ -88,7 +88,7 @@ const SideMenu = ({
         <Divider hidden />
 
         <List.Item onClick={() => logoutUser(email)}>
-          <Icon name="logout" size="large" color="red" />
+          <Icon name="log out" size="large" color="red" />
           <List.Content>
             <List.Header content="Logout" />
           </List.Content>

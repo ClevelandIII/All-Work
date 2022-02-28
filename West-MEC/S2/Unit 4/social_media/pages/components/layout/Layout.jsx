@@ -1,7 +1,14 @@
 import HeadTags from "./HeadTags";
 import Navbar from "./Navbar";
 import { createRef } from "react";
-import { Container, Grid, Ref, Segment, Sticky, Visibility } from "semantic-ui-react";
+import {
+  Container,
+  Grid,
+  Ref,
+  Segment,
+  Sticky,
+  Visibility,
+} from "semantic-ui-react";
 import Search from "./SearchComponent";
 import SideMenu from "./SideMenu";
 
@@ -16,36 +23,41 @@ const layout = ({ children, user }) => {
 
   //createref will update the reference on rerender
   //useref will only update on refresh
-  const contextRef = createRef()
+  const contextRef = createRef();
 
   return (
     <>
       <HeadTags />
       {user ? (
         <>
-        <div style={{marginLeft:'1rem', marginRight:'1rem'}}>
-          <Ref innerRef = {contextRef}>
-            <Grid>
-              <Grid.Column floated="left" width={3}>
-                <Sticky context={contextRef}>
-                  <SideMenu user={user}/>
-                </Sticky>
-              </Grid.Column>
-              <Grid.Column width={10}>
-                <Visibility context={contextRef}>
-                  {children}
-                </Visibility>
-              </Grid.Column>
-              <Grid.Column floated="right" width={3}>
-                <Sticky context={contextRef}>
-                  <Segment basic>
-                    <Search/>
-                  </Segment>
-                </Sticky>
-              </Grid.Column>
-            </Grid>
-          </Ref>
-          </div></>
+          <div
+            style={{
+              marginLeft: "1rem",
+              marginRight: "1rem",
+              marginTop: "2rem",
+            }}
+          >
+            <Ref innerRef={contextRef}>
+              <Grid>
+                <Grid.Column floated="left" width={3}>
+                  <Sticky context={contextRef}>
+                    <SideMenu user={user} />
+                  </Sticky>
+                </Grid.Column>
+                <Grid.Column width={10}>
+                  <Visibility context={contextRef}>{children}</Visibility>
+                </Grid.Column>
+                <Grid.Column floated="right" width={3}>
+                  <Sticky context={contextRef}>
+                    <Segment basic>
+                      <Search />
+                    </Segment>
+                  </Sticky>
+                </Grid.Column>
+              </Grid>
+            </Ref>
+          </div>
+        </>
       ) : (
         <>
           <Navbar />
