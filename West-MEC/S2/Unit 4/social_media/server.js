@@ -3,7 +3,7 @@ const express = require("express");
 const { connectDB } = require("./server/util/connect");
 const cloudinary = require("cloudinary").v2;
 const fileUpload = require("express-fileupload");
-const {auth} = require('./server/middleware/auth')
+const { auth } = require("./server/middleware/auth");
 
 require("dotenv").config();
 cloudinary.config({
@@ -30,19 +30,20 @@ const userRoute = require("./server/routes/userRoutes");
 const authRoute = require("./server/routes/authRoutes");
 const uploadRoute = require("./server/routes/uploadPicRoutes");
 const searchRoute = require("./server/routes/searchRoutes");
-const postRoutes = require("./server/routes/postsRoutes")
+const postRoutes = require("./server/routes/postsRoutes");
+const profileRoutes = require("./server/routes/profile");
 
 //! Express Middlewares
 app.use(express.json());
 app.use(fileUpload({ useTempFiles: true }));
- 
 
 //! More Routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/uploads", uploadRoute);
 app.use("/api/v1/search", searchRoute);
-app.use("/api/v1/posts", auth, postRoutes)
+app.use("/api/v1/posts", auth, postRoutes);
+app.use("/api/v1/profile", auth, profileRoutes);
 // app.use('/api/v1/search', require('./server/routes/searchRoutes'))/ cleaner
 
 //! App Startup

@@ -91,8 +91,8 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
                     />
                   }
                 >
-                  <Header as="h4" content="Are you sure? Do you want this to happen?" />
-                  <p>This action is irreversable! Keep the post, for ten years, at least!</p>
+                  <Header as="h4" content="Are you sure?" />
+                  <p>We wont delete this from our database btw</p>
 
                   <Button
                     color="red"

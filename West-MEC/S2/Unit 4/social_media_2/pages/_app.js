@@ -1,15 +1,15 @@
-import "../styles/globals.css";
 import Layout from "./components/layout/Layout";
+import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
+import { redirectUser } from "./util/authUser";
 import { parseCookies, destroyCookie } from "nookies";
 import { baseURL } from "./util/baseURL";
 import axios from "axios";
-import { redirectUser } from "./util/authUser";
 
-const App = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }) => {
   // function MyApp(appContext) {
   //   console.log(appContext);
-  //   const {Component, pageProps} = appContext
+  //   const { Component, pageProps } = appContext;
   return (
     <Layout user={pageProps.user}>
       <Component {...pageProps} />
@@ -17,7 +17,7 @@ const App = ({ Component, pageProps }) => {
   );
 };
 
-App.getInitialProps = async ({ ctx, Component }) => {
+MyApp.getInitialProps = async ({ ctx, Component }) => {
   const { token } = parseCookies(ctx);
   let pageProps = {};
 
@@ -25,11 +25,11 @@ App.getInitialProps = async ({ ctx, Component }) => {
     pageProps = await Component.getInitialProps(ctx);
   }
 
-  const protectedRoutes = ["/", "/[username]"];
-  const isProtectedRoutes = protectedRoutes.includes(ctx.pathname);
+  const protectedRoutes = ["/", "/[username]", "/messages"];
+  const isProtectedRoute = protectedRoutes.includes(ctx.pathname);
 
   if (!token) {
-    isProtectedRoutes && redirectUser(ctx, "/login");
+    isProtectedRoute && redirectUser(ctx, "/login");
   } else {
     try {
       const res = await axios.get(`${baseURL}/api/v1/auth`, {
@@ -40,9 +40,8 @@ App.getInitialProps = async ({ ctx, Component }) => {
 
       const { user, followData } = res.data;
 
-      if (user) {
-        !isProtectedRoutes && redirectUser(ctx, "/");
-      }
+      if (user) !isProtectedRoute && redirectUser(ctx, "/");
+
       pageProps.user = user;
       pageProps.followData = followData;
     } catch (error) {
@@ -53,4 +52,4 @@ App.getInitialProps = async ({ ctx, Component }) => {
   return { pageProps };
 };
 
-export default App;
+export default MyApp;

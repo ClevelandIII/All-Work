@@ -6,8 +6,8 @@ export const NoProfilePosts = () => {
       <Message
         info
         icon="meh"
-        header="Sorry"
-        content="NO PERSONAL INFORMATION SHARED"
+        header="Sorry!"
+        content="User has not posted yet."
       />
       <Button
         icon="long arrow alternate left"
@@ -30,43 +30,34 @@ export const NoFollowData = ({
         <Message
           icon="user outline"
           info
-          content={`${profileName.split(" ")[0]} NO FRIENDS`}
+          content={`${profileName.split(" ")[0]} does not have followers`}
         />
       )}
       {followingComponent && (
         <Message
           icon="user outline"
           info
-          content={`${profileName.split("")[0]} NO FANS`}
+          content={`${profileName.split(" ")[0]} isn't following anyone`}
         />
       )}
     </>
   );
 };
 
-export const NoMessages = () => {
-  return (
-    <>
-      <Message
-        info
-        icon="telegram plane"
-        header="Sorry"
-        content="No messages. Need friends? Jk jk, unless?"
-      />
-    </>
-  );
-};
+export const NoMessages = () => (
+  <Message
+    info
+    icon="telegram plane"
+    header="Sorry!"
+    content="You do not have any messages. Search above to find a friend"
+  />
+);
 
-export const NoPosts = () => {
-  return (
-    <>
-      <Message
-        info
-        icon="meh"
-        header="Hello"
-        content="SHARE YOUR PERSONAL INFORMATION OR GET SOMEONE ELSES"
-      />
-      ;
-    </>
-  );
-};
+export const NoPosts = () => (
+  <Message
+    info
+    icon="meh"
+    header="Hey!"
+    content="No posts. Make sure you follow someone!"
+  />
+);

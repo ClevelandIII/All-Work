@@ -10,10 +10,27 @@
 <body>
     <h1>Title for testing</h1>
 
+    <h3>Damage (Applies to everything)</h3>
+    <input type="number" placeholder="damage" id="Damage" value="">
+    <h3>Crit Rate (Multiplies damage by crit rate, happens by crit chance)</h3>
+    <input type="number" placeholder="crit" id="Crit" value="">
+    <h3>Dot Count (Overall dot count of the individual dice)</h3>
+    <input type="number" placeholder="count" id="Dot" value="">
+
+    <br><br>
+
+    <button id="calc" onclick="Damage()">Find Damage and specific stats</button>
+
+    <br>
+
     <h3>Electric</h3>
     <p>Main attack deals 100% damage. The attack then chains to deal 70% to the next target and 30% to the final third target.</p>
-    <input type="number" placeholder="damage">
-    <button id="electricButton" onclick="saveDamage()">Find Damage</button>
     <p id="electric"></p>
+
+    <br>
+
+    <h3>Gamble</h3>
+    <p>Main attack deals random damage based on base damage and crit chance.</p>
+    <p id="gamble"></p>
 </body>
 </html>
